@@ -1,3 +1,6 @@
+# Rocket-tracking-widget-for-Egg-Inc.
+Python based widget to show your rocket progress in Egg Inc. on your desktop! (windows only)
+
 How to run the Egg inc. Rocket Tracking widget for windows
 - Install python by going to this website: https://www.python.org/downloads/
 - Download "Python 3.12.1"
@@ -11,12 +14,9 @@ How to run the Egg inc. Rocket Tracking widget for windows
 	pip3 install PyQt5 selenium pillow
 
 Changes you need to make to the code!
-- Line 18: Change file path for picture icon to whatever it is on your PC
-- Line 117: Change the starting coordinates for the widget
-- Line 149: Change file path for picture icon to whatever it is on your PC
-- Line 184: Change file path for picture icon to whatever it is on your PC
-- Line 188: Change file path for picture icon to whatever it is on your PC
-- Line 199: Put your own player ID in the field
+- Line 11: Change file path to correct folder
+- Line 12: Put your own player ID in the field
+- Line 118: Change the starting coordinates for the widget
 - To run the program, the cleanest way is to run "launcher.py" however if you want to see the console because you are getting errors, you can run "Rocket widget.py". If you are still confused and you think there is something wrong with the webdriver, you can run "Rocket widget (without headless).py" which will show you what is going on in the selium webdriver.
 
 For it to open on startup
