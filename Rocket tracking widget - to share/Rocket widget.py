@@ -8,15 +8,16 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.options import Options
 import sys
 import time
-
+testpath="C:/Users/.........." #CHANGE THIS TO YOUR OWN FILE PATH
+EID="EIxxxx" #PUT YOUR OWN PLAYER ID HERE
 class RingProgressBar(QWidget):
     def __init__(self, parent=None):
         super(RingProgressBar, self).__init__(parent)
         self.value = 0
         self.specific_number = 0  # Add a member variable for specific number
         self.setFixedSize(100, 100)  # Set a fixed size for the ring progress bar
-        self.picture = QPixmap("FILE_PATH_HERE/Atreggies.png").scaled(69, 53)  # UPDATE OWN FILE PATH FOR THE ICON, YOU CAN ALSO CHANGE THE ICON TO WHAT EVER PICTURE YOU WANT
-
+        self.picture = QPixmap(testpath+"/Atreggies.png").scaled(69, 53)  # UPDATE OWN FILE PATH FOR THE ICON, YOU CAN ALSO CHANGE THE ICON TO WHAT EVER PICTURE YOU WANT
+    
     def setValue(self, value, specific_number):
         self.value = value
         self.specific_number = specific_number
@@ -114,7 +115,7 @@ class DraggableWidget(QWidget):
 
         # Set window properties
         self.setWindowTitle("Rockets Tracker")
-        self.setGeometry(1815, -245, 400, 150)  #CHANGE THE FIRST 2 NUMBERS HERE TO CHANGE WHERE THE WIDGET OPENS ON START UP
+        self.setGeometry(200, 200, 400, 150)  #CHANGE THE FIRST 2 NUMBERS HERE TO CHANGE WHERE THE WIDGET OPENS ON START UP
 
         # Make the window fully transparent
         self.setWindowFlags(Qt.FramelessWindowHint)
@@ -146,7 +147,7 @@ class DraggableWidget(QWidget):
 
         # Create a refresh button
         self.refresh_button = QPushButton(self)
-        self.refresh_button.setIcon(QIcon('FILE_PATH_HERE/Refresh.png'))  # CHANGE FILE PATH HERE
+        self.refresh_button.setIcon(QIcon(testpath+'/Refresh.png'))  # CHANGE FILE PATH HERE
         self.refresh_button.setFixedSize(32, 32)  # Set the size of the refresh button
         self.refresh_button.setToolTip('Refresh Webpage')  # Set the tooltip text
         self.refresh_button.setStyleSheet(
@@ -181,11 +182,11 @@ class DraggableWidget(QWidget):
 
     # Function to change the refresh button icon on hover enter
     def refresh_button_hover_enter(self, event):
-        self.refresh_button.setIcon(QIcon('FILE_PATH_HERE/Refresh hover.png')) # CHANGE FILE PATH HERE
+        self.refresh_button.setIcon(QIcon(testpath+'/Refresh hover.png')) # CHANGE FILE PATH HERE
 
     # Function to change the refresh button icon on hover leave
     def refresh_button_hover_leave(self, event):
-        self.refresh_button.setIcon(QIcon('FILE_PATH_HERE/Refresh.png')) # CHANGE FILE PATH HERE
+        self.refresh_button.setIcon(QIcon(testpath+'/Refresh.png')) # CHANGE FILE PATH HERE
 
     def update_numbers(self):
         try:
@@ -196,7 +197,7 @@ class DraggableWidget(QWidget):
 
             # Input the player ID if not clicked before
             if not self.load_button_clicked:
-                input_field.send_keys("YOUR PLAYER ID") #PUT YOUR OWN PLAYER ID HERE
+                input_field.send_keys(EID) #PUT YOUR OWN PLAYER ID HERE
 
                 # Click "Load Player Data" button and wait for the page to load
                 load_button_xpath = "//button[contains(text(), 'Load Player Data')]"
