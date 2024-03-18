@@ -144,14 +144,15 @@ class DraggableWidget(QWidget):
         progress_layout = QHBoxLayout()
         for container in container_layouts:
             progress_layout.addWidget(container)
-
-        # Create a close button
+        
+        ## CLOSE BUTTON ##
+        # Create the close button
         self.close_button = QPushButton(self)
         self.close_button.setIcon(QIcon(path+'/img/Close.png'))  # CHANGE FILE PATH HERE
         self.close_button.setFixedSize(32, 32)  # Set the size of the close button
         self.close_button.setToolTip('close Webpage')  # Set the tooltip text
         self.close_button.setStyleSheet(
-            "border: none; background-color: transparent; }"  # Remove border and background color
+            "QPushButton { border: none; background-color: transparent; }"  # Remove border and background color
         )
         self.close_button.clicked.connect(self.close_widget)  # Connect the clicked signal to the close method
         
@@ -159,11 +160,8 @@ class DraggableWidget(QWidget):
         self.close_button.enterEvent = self.close_button_hover_enter
         self.close_button.leaveEvent = self.close_button_hover_leave
 
-        # Add the refresh button to the layout
-        progress_layout.addWidget(self.close_button)
-
-
-        # Create a refresh button
+        ## REFRESH BUTTON ##
+        # Create the refresh button
         self.refresh_button = QPushButton(self)
         self.refresh_button.setIcon(QIcon(path+'/img/Refresh.png'))  # CHANGE FILE PATH HERE
         self.refresh_button.setFixedSize(32, 32)  # Set the size of the refresh button
@@ -177,10 +175,26 @@ class DraggableWidget(QWidget):
         self.refresh_button.enterEvent = self.refresh_button_hover_enter
         self.refresh_button.leaveEvent = self.refresh_button_hover_leave
 
-        # Add the refresh button to the layout
-        progress_layout.addWidget(self.refresh_button)
 
-        # Set the layout for the widget
+        # Create a widget to contain the vertical layout for buttons
+        button_container = QWidget(self)
+        # Set height to adjust proper spacing
+        button_container.setMaximumHeight(60)
+        # Create a layout for the buttons
+        button_layout = QVBoxLayout()
+         
+        # Add the close button to the vertical layout
+        button_layout.addWidget(self.close_button)
+        # Add the refresh button to the vertical layout
+        button_layout.addWidget(self.refresh_button)
+
+        # Set the button layout for the button container
+        button_container.setLayout(button_layout)
+
+        # Add the button container widget to the horizontal progress layout
+        progress_layout.addWidget(button_container)
+
+        # Finally set the layout for the widget
         self.setLayout(progress_layout)
 
         # Initialize Selenium webdriver with Chrome options
@@ -208,11 +222,11 @@ class DraggableWidget(QWidget):
 
     # Function to change the refresh button icon on hover enter
     def close_button_hover_enter(self, event):
-        self.refresh_button.setIcon(QIcon(path+'/img/Close hover.png')) # CHANGE FILE PATH HERE
+        self.close_button.setIcon(QIcon(path+'/img/Close hover.png')) # CHANGE FILE PATH HERE
 
     # Function to change the refresh button icon on hover leave
     def close_button_hover_leave(self, event):
-        self.refresh_button.setIcon(QIcon(path+'/img/Close.png')) # CHANGE FILE PATH HERE
+        self.close_button.setIcon(QIcon(path+'/img/Close.png')) # CHANGE FILE PATH HERE
 
     def update_numbers(self):
         try:
