@@ -147,14 +147,17 @@ class DraggableWidget(QWidget):
 
         # Create a close button
         self.close_button = QPushButton(self)
-        self.close_button.setIcon(QIcon(path+'/img/close.png'))  # CHANGE FILE PATH HERE
+        self.close_button.setIcon(QIcon(path+'/img/Close.png'))  # CHANGE FILE PATH HERE
         self.close_button.setFixedSize(32, 32)  # Set the size of the close button
         self.close_button.setToolTip('close Webpage')  # Set the tooltip text
         self.close_button.setStyleSheet(
             "border: none; background-color: transparent; }"  # Remove border and background color
         )
         self.close_button.clicked.connect(self.close_widget)  # Connect the clicked signal to the close method
-
+        
+        # Connect hover events to change the icon
+        self.refresh_button.enterEvent = self.close_button_hover_enter
+        self.refresh_button.leaveEvent = self.close_button_hover_leave
 
         # Add the refresh button to the layout
         progress_layout.addWidget(self.close_button)
@@ -202,6 +205,14 @@ class DraggableWidget(QWidget):
     # Function to change the refresh button icon on hover leave
     def refresh_button_hover_leave(self, event):
         self.refresh_button.setIcon(QIcon(path+'/img/Refresh.png')) # CHANGE FILE PATH HERE
+
+    # Function to change the refresh button icon on hover enter
+    def close_button_hover_enter(self, event):
+        self.refresh_button.setIcon(QIcon(path+'/img/Close hover.png')) # CHANGE FILE PATH HERE
+
+    # Function to change the refresh button icon on hover leave
+    def close_button_hover_leave(self, event):
+        self.refresh_button.setIcon(QIcon(path+'/img/Close.png')) # CHANGE FILE PATH HERE
 
     def update_numbers(self):
         try:
