@@ -156,8 +156,8 @@ class DraggableWidget(QWidget):
         self.close_button.clicked.connect(self.close_widget)  # Connect the clicked signal to the close method
         
         # Connect hover events to change the icon
-        self.refresh_button.enterEvent = self.close_button_hover_enter
-        self.refresh_button.leaveEvent = self.close_button_hover_leave
+        self.close_button.enterEvent = self.close_button_hover_enter
+        self.close_button.leaveEvent = self.close_button_hover_leave
 
         # Add the refresh button to the layout
         progress_layout.addWidget(self.close_button)
